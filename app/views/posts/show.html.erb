@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<div class='container'>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"> Title: <%= @post.title %> </h5>
+      <p class="card-text"> Content: <%= @post.content %> </p>
+      <%= link_to 'Edit', edit_post_path(@post), :class => "button btn btn-info" %>
+    </div>
+  </div>
+  <%= link_to 'Back', posts_path %>
+
+</div>
