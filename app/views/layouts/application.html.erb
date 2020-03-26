@@ -12,17 +12,39 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href= "<%= posts_path %>">Blog</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      
+         
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <% if logged_in? %>  
+         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link" href="<%= new_post_path %>">Add post</a>
           </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="<%= myposts_path %>">My posts</a>
+          </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class='logout active ml-auto'>
+              <a class="nav-link" href="<%= logout_path  %>" data-method="post">Log out</a>
+            </li>
+          </ul>
+          <% else %>
+          <ul class="nav navbar-nav mr-auto">
+          <li class="signup active">
+            <a class="nav-link" href="<%= new_user_path %>">Register</a>
+          </li>
+          <li class='login active'>
+            <a class="nav-link" href="<%= login_path  %>" data-method="post">Log in</a>
+          </li>
+          </ul>
+         <% end %>
+
         </ul>
+
       </div>
+
     </nav>
     <%= yield %>
   </body>

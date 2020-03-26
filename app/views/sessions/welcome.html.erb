@@ -1,0 +1,21 @@
+    <div class='container'>
+        <div class='row'>
+            <div class='col-md-6 mx-auto'>
+                <div class="main-login-form col-20 text-center">
+                    <% if logged_in? %>
+                        <h1>Welcome Back, <%= current_user.name %> !</h1>
+                        <h1>Redirecting you soon ...</h1>
+                        <meta HTTP-EQUIV="REFRESH" content="3; url=/">
+                    <% else %>
+                        <h1>Welcome to my Blog</h1>
+                        <br>
+                        <%= link_to 'Login', login_path, :class => "button btn btn-info col-3" %>
+                        <br>
+                        <br>
+                        <%= link_to 'Sign up', new_user_path, :class => "button btn btn-info col-3" %>
+                    <%end%>
+                </div>
+            </div>
+        </div>
+    </div>
+    

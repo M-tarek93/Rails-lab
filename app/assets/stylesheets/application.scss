@@ -15,5 +15,18 @@
  @import "bootstrap";
  @import "rails_bootstrap_forms";
 .card{
-    margin: auto;
+    margin: 20px auto ;
+}
+
+// .logout , .login{
+//     position: relative;
+//     right: 60px;
+// }
+
+.main-login-form, .signUP{
+    margin-top: 80px;
+}
+
+body{
+    background-color:powderblue;
 }

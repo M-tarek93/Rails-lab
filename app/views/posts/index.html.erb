@@ -1,16 +1,26 @@
-<div class='container'>
-<p id="notice"><%= notice %></p>
+<% if notice %>
+<div class="alert alert-info">
+  <strong id='notice'> <%= notice%></strong>
+</div>
+<% end %>
 
+<div class='container'>
+<br>
 <h1>Posts</h1>
 <div class='container'>
   <% @posts.each do |post| %>
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 40rem;">
       <div class="card-body">
         <h5 class="card-title"> <%= post.title %> </h5>
+        <p class="card-text"> Author: <%= User.find(post.user_id).name %> </p>
         <p class="card-text"> <%= post.content %> </p>
-        <%= link_to 'Show', post, :class => "button btn btn-info" %>
-        <%= link_to 'Edit', edit_post_path(post), :class => "button btn btn-info" %>
-        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button btn btn-danger" %>
+        <p class="card-text"> Last updated: <%= post.updated_at %> </p>
+        <%= link_to 'Show', post, :class => "button btn btn-info col-3" %>
+        <% if post.user_id == current_user.id %>       
+        <%= link_to 'Edit', edit_post_path(post), :class => "button btn btn-info col-3" %>
+        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button btn btn-danger col-3" %>
+        <% end %>
+       
       </div>
     </div>
   <% end %>

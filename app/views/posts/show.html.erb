@@ -1,12 +1,45 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+<div class="alert alert-info">
+  <strong id='notice'> <%= notice%></strong>
+</div>
+<% end %>
 <div class='container'>
-  <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 40rem;">
     <div class="card-body">
-      <h5 class="card-title"> Title: <%= @post.title %> </h5>
-      <p class="card-text"> Content: <%= @post.content %> </p>
-      <%= link_to 'Edit', edit_post_path(@post), :class => "button btn btn-info" %>
+      <h5 class="card-title"> <%= @post.title %> </h5>
+      <p class="card-text"> Author: <%= User.find(@post.user_id).name %> </p>
+      <p class="card-text"> <%= @post.content %> </p>
+      <p class="card-text"> Last updated: <%= @post.updated_at %> </p>
+      <% if @post.user_id == current_user.id %>       
+      <%= link_to 'Edit', edit_post_path(@post), :class => "button btn btn-info col-3" %>
+      <% end %>
     </div>
   </div>
-  <%= link_to 'Back', posts_path %>
 
+  <%= link_to '<-Back', posts_path %>
+  <br>
+  <br>
+  <%= bootstrap_form_for(@comment) do |form| %>
+    <%= form.text_area :content, hide_label: true, placeholder: "Leave a comment..." %>
+    <%= form.hidden_field :post_id, :value => @post.id %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+    <%= form.submit :"Add a Comment", class: 'btn btn-success' %>
+  <% end %>
+<br>
+<% if @comments%>
+  <h3 class="card-text"> Comments: </h3>
+  <% @comments.each do |comment| %>
+    <div class="card" style="width: 40rem;">
+      <div class="card-body">
+        <h5 class="card-text"> <%= comment.content %> </h5>
+        <p class="card-text"> By: <%= User.find(comment.user_id).name %> </p>
+        <p class="card-text"> Last updated: <%= comment.updated_at %> </p>
+        <% if [comment.user_id,@post.user_id].include? current_user.id %>       
+        <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button btn btn-danger col-3" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+<% end %>
 </div>

@@ -1,0 +1,25 @@
+<% if notice %>
+<div class="alert alert-danger">
+  <strong id='notice'> <%= notice%></strong>
+</div>
+<% end %>
+<div class='container signUP'>
+<div class='row'>
+<div class='col-md-4 mx-auto'>
+    <%= bootstrap_form_for @user do |f|%>
+        
+        <h1>Sign Up</h1>	
+		<%= f.text_field :name, placeholder: 'Username' %>
+		<%= f.password_field :password, placeholder: 'Password' %>
+		Password Confirmation
+        <br>
+        <label for="confirmPassword" class="sr-only">Password Confirmation</label>
+		<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="password" style='margin-top:10px;'>
+        <br>
+  <%= f.submit :Submit, class: 'btn btn-success' %>
+					
+<%end%>
+
+</div>
+</div>
+</div>

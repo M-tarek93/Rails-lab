@@ -1,0 +1,35 @@
+<% if notice %>
+<div class="alert alert-danger">
+  <strong id='notice'> <%= notice%></strong>
+</div>
+<% end %>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4 mx-auto'>
+   <%= form_tag '/login' do %>
+        <div class="login-form-main-message"></div>
+			<div class="main-login-form col-15 text-center">
+                <h1>Login</h1>
+                <br>
+				<div class="login-group">
+					<div class="form-group">
+						<label for="lg_username" class="sr-only">Username</label>
+						<input type="text" class="form-control" id="lg_username" name="name" placeholder="username">
+					</div>
+					<div class="form-group">
+						<label for="lg_password" class="sr-only">Password</label>
+						<input type="password" class="form-control" id="lg_password" name="password" placeholder="password">
+					</div>
+			    </div>
+                <br>
+			<button type="submit" class="btn btn-info col-3">Login</button>
+		</div>
+        <br>
+        <div class="etc-login-form">
+				<p>new user? <a href="<%= new_user_path %>">create new account</a></p>
+		</div>
+<%end%>
+
+</div>
+</div>
+</div>
